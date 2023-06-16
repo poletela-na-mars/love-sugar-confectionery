@@ -11,6 +11,8 @@
 
   &__image {
     width: 260px;
+    height: 260px;
+    object-fit: contain;
   }
 
   &__title {
@@ -31,9 +33,9 @@
       display: flex;
       flex: 1;
 
-      &:first-of-type {
-        margin-bottom: 6px;
-      }
+      //&:first-of-type {
+      //  margin-bottom: 6px;
+      //}
 
       li {
         padding: 8px;

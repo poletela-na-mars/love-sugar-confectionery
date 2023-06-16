@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import images from '../assets/img';
 
 // TODO - extract to type file
+//      - change font
 
-const ItemBlock = ({title, price}: any) => {
+export const ItemBlock = ({title, price, imageUrl, types}: any) => {
   const [itemCount, setItemCount] = useState(0);
+  const [activeType, setActiveType] = useState(0);
 
   const onClickAddButtonHandler = () => {
     if (itemCount < 99) {
@@ -15,19 +18,15 @@ const ItemBlock = ({title, price}: any) => {
       <div className='pizza-block'>
         <img
             className='pizza-block__image'
-            src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
-            alt='Pizza'
+            src={images[imageUrl]}
+            alt={title}
         />
         <h4 className='pizza-block__title'>{title}</h4>
         <div className='pizza-block__selector'>
           <ul>
-            <li className='active'>тонкое</li>
-            <li>традиционное</li>
-          </ul>
-          <ul>
-            <li className='active'>26 см.</li>
-            <li>30 см.</li>
-            <li>40 см.</li>
+            {
+              types?.map((type: string, idx: number) => <li key={idx} onClick={() => setActiveType(idx)} className={activeType === idx ? 'active' : ''}>{type}</li>)
+            }
           </ul>
         </div>
         <div className='pizza-block__bottom'>
@@ -52,5 +51,3 @@ const ItemBlock = ({title, price}: any) => {
       </div>
   );
 };
-
-export default ItemBlock;

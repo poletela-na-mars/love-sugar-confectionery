@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Header = () => {
+export const Header = () => {
   return (
       <div className='header'>
         <div className='container'>
           <div className='header__logo'>
-            <img width='100' src='../img/logo.png' alt='Logo' />
+            <img src='img/logo.png' alt='Logo' />
             <div>
-              <h1>React Pizza</h1>
-              <p>самая вкусная пицца во вселенной</p>
+              <h1 hidden>Любим сахар</h1>
+              <p>Ваша лучшая кондитерская</p>
             </div>
           </div>
           <div className='header__cart'>
@@ -51,5 +51,3 @@ const Header = () => {
       </div>
   );
 };
-
-export default Header;

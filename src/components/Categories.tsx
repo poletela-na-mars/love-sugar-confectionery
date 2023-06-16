@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { CategoriesList } from '../consts';
 
-const Categories = () => {
+export const Categories = () => {
+  const [activeCat, setActiveCat] = useState(0);
+
+  const onClickCategoryHandler = (idx: React.SetStateAction<number>) => {
+    setActiveCat(idx);
+  };
+
   return (
       <div className='categories'>
         <ul>
-          <li className='active'>Все</li>
-          <li>Мясные</li>
-          <li>Вегетарианская</li>
-          <li>Гриль</li>
-          <li>Острые</li>
-          <li>Закрытые</li>
+          {
+            CategoriesList.map((value, idx) => (
+                <li key={idx} onClick={() => onClickCategoryHandler(idx)} className={activeCat === idx ? 'active' : ''}>
+                  {value}
+                </li>
+            ))
+          }
         </ul>
       </div>
   )
 };
-
-export default Categories;

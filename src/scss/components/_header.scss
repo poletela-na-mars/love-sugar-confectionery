@@ -12,9 +12,15 @@
 
   &__logo {
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
-      margin-right: 15px;
+      margin-right: 20px;
+      width: 100%;
+      height: 100%;
+      max-width: 300px;
+      max-height: 50px;
     }
 
     h1 {

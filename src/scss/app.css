@@ -55,9 +55,15 @@ a {
 }
 .header__logo {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .header__logo img {
-  margin-right: 15px;
+  margin-right: 20px;
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  max-height: 50px;
 }
 .header__logo h1 {
   color: #181818;
@@ -279,6 +285,8 @@ a {
 }
 .pizza-block__image {
   width: 260px;
+  height: 260px;
+  object-fit: contain;
 }
 .pizza-block__title {
   font-size: 20px;
@@ -296,9 +304,6 @@ a {
 .pizza-block__selector ul {
   display: flex;
   flex: 1;
-}
-.pizza-block__selector ul:first-of-type {
-  margin-bottom: 6px;
 }
 .pizza-block__selector ul li {
   padding: 8px;

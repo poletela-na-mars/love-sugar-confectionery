@@ -1,0 +1,37 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "bread",
+    "title": "Хлеб Чиабатта",
+    "types": [
+      "половина",
+      "целый"
+    ],
+    "price": 79,
+    "category": 4,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "brownie",
+    "title": "Брауни",
+    "types": [
+      "стандартный"
+    ],
+    "price": 89,
+    "category": 2,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "carrotCake",
+    "title": "Морковный торт",
+    "types": [
+      "кусочек",
+      "целый"
+    ],
+    "price": 99,
+    "category": 1,
+    "rating": 6
+  }
+]
