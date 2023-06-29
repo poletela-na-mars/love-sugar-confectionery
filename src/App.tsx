@@ -1,10 +1,12 @@
-import { Header, Categories, Sort, ItemBlock } from './components';
+import { Routes, Route } from 'react-router-dom';
 
-import products from './assets/products.json';
+import { Header } from './components';
+import { Home, NotFound, Cart } from './pages';
 
 import './scss/app.scss';
 
 // TODO - change classNames
+//      - delete products.json
 
 export const App = () => {
   return (
@@ -12,20 +14,11 @@ export const App = () => {
         <div className='wrapper'>
           <Header />
           <div className='content'>
-            <div className='container'>
-              <div className='content__top'>
-                <Categories />
-                <Sort />
-              </div>
-              <h2 className='content__title'>Все изделия</h2>
-              <div className='content__items'>
-                {
-                  products.map((product) =>
-                      <ItemBlock key={product.id} {...product} />
-                  )
-                }
-              </div>
-            </div>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
           </div>
         </div>
       </>

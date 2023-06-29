@@ -1,18 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
       <div className='header'>
         <div className='container'>
-          <div className='header__logo'>
-            <img src='img/logo.png' alt='Logo' />
-            <div>
-              <h1 hidden>Любим сахар</h1>
-              <p>Ваша лучшая кондитерская</p>
+          <Link to='/'>
+            <div className='header__logo'>
+              <img src='img/logo.png' alt='Logo' />
+              <div>
+                <h1 hidden>Любим сахар</h1>
+                <p>Ваша лучшая кондитерская</p>
+              </div>
             </div>
-          </div>
+          </Link>
           <div className='header__cart'>
-            <a href='/cart.html' className='button button--cart'>
+            <Link to='/cart' className='button button--cart'>
               <span>520 ₽</span>
               <div className='button__delimiter'></div>
               <svg
@@ -45,7 +48,7 @@ export const Header = () => {
                 />
               </svg>
               <span>3</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
