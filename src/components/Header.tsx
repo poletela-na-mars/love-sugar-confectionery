@@ -5,15 +5,16 @@ export const Header = () => {
   return (
       <div className='header'>
         <div className='container'>
-          <Link to='/'>
-            <div className='header__logo'>
-              <img src='img/logo.png' alt='Logo' />
-              <div>
-                <h1 hidden>Любим сахар</h1>
-                <p>Ваша лучшая кондитерская</p>
-              </div>
+
+          <div className='header__logo'>
+            <Link to='/'>
+              <img src='img/lemon-logo.svg' alt='Logo' />
+            </Link>
+            <div>
+              <h1 hidden>Любим сахар</h1>
+              <p>Ваша лучшая кондитерская</p>
             </div>
-          </Link>
+          </div>
           <div className='header__cart'>
             <Link to='/cart' className='button button--cart'>
               <span>520 ₽</span>
