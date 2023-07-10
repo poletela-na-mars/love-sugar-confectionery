@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CategoriesList } from '../consts';
 
-export const Categories = () => {
-  const [activeCat, setActiveCat] = useState(0);
+// TODO - add types
+export const Categories = ({value, onClickCategoryHandler}: any) => {
+  // const [activeCat, setActiveCat] = useState(0);
 
-  const onClickCategoryHandler = (idx: React.SetStateAction<number>) => {
-    setActiveCat(idx);
+  const onClickCategoryHandlerLoc = (idx: React.SetStateAction<number>) => {
+    onClickCategoryHandler(idx);
   };
 
   return (
       <div className='categories'>
         <ul>
           {
-            CategoriesList.map((value, idx) => (
-                <li key={idx} onClick={() => onClickCategoryHandler(idx)} className={activeCat === idx ? 'active' : ''}>
-                  {value}
+            CategoriesList.map((category, idx) => (
+                <li key={idx} onClick={() => onClickCategoryHandlerLoc(idx)} className={value === idx ? 'active' : ''}>
+                  {category}
                 </li>
             ))
           }
