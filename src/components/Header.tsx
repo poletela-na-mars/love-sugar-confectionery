@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const Header = () => {
+import { Search } from './Search';
+
+export const Header = (props: { searchValue: string; setSearchValue: (arg0: string) => void; }) => {
   return (
       <div className='header'>
         <div className='container'>
@@ -14,6 +16,7 @@ export const Header = () => {
               <h1 hidden>Любим сахар</h1>
               <p>Ваша лучшая кондитерская</p>
             </div>
+            <Search searchValue={props.searchValue} setSearchValue={props.setSearchValue} />
           </div>
           <div className='header__cart'>
             <Link to='/cart' className='button button--cart'>

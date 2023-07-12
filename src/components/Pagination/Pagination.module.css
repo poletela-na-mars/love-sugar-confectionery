@@ -1,0 +1,27 @@
+.root li {
+  display: inline-block;
+}
+.root li a {
+  display: inline-block;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  padding: 10px;
+  border: 1px solid #ff3399;
+  border-radius: 30px;
+  margin-right: 10px;
+  background-color: #ffffff;
+  color: #ff3399;
+  cursor: pointer;
+}
+.root li a:hover {
+  background-color: #ff3399;
+  color: #ffffff;
+}
+.root :global .selected a {
+  background-color: #ff3399;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=Pagination.module.css.map */
