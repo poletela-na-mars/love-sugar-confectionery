@@ -1,26 +1,38 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { FilterState, setCategoryId } from '../redux/slices/filterSlice';
 
 import { Categories, ItemBlock, Pagination, Sort } from '../components';
 import { Skeleton } from '../components/ItemBlock/Skeleton';
 
-export const Home = (props: { searchValue: string }) => {
+import { SearchContext } from '../App';
+
+export const Home = () => {
+  const selectState = (state: FilterState) => state.filterSlice;
+  const { categoryId, sort } = useSelector(selectState);
+
+  const dispatch = useDispatch();
+
+  const onClickCategoryHandler = (id: number) => {
+    dispatch(setCategoryId(id));
+  };
+
+  const { searchValue } = useContext(SearchContext);
+
   const [products, setProducts] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState(1);
   // TODO - set correct type for product
+  //      - fix a circle for amount of product
   const [isLoading, setIsLoading] = useState(true);
-  const [activeCat, setActiveCat] = useState(0);
-  const [selectedSort, setSelectedSort] = useState({
-    name: 'популярности',
-    sortProperty: 'rating',
-  });
 
   useEffect(() => {
     setIsLoading(true);
 
-    const sortBy = selectedSort.sortProperty.replace('-', '');
-    const order = selectedSort.sortProperty.includes('-') ? 'asc' : 'desc';
-    const category = activeCat > 0 ? `category=${activeCat}` : '';
-    const search = props.searchValue ? `&search=${props.searchValue}` : '';
+    const sortBy = sort.sortProperty.replace('-', '');
+    const order = (sort.sortProperty.includes('-') || sort.sortProperty === 'rating') ? 'desc' : 'asc';
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const search = searchValue ? `&search=${searchValue}` : '';
 
     fetch(
         `https://648e2e662de8d0ea11e89b74.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}${search}`)
@@ -30,7 +42,7 @@ export const Home = (props: { searchValue: string }) => {
           setIsLoading(false);
         });
     window.scrollTo(0, 0);
-  }, [activeCat, selectedSort, props.searchValue, currentPage]);
+  }, [categoryId, sort, searchValue, currentPage]);
 
   const mappedProducts = products
       .map((product: { id: any; }) => <ItemBlock key={product.id} {...product} />);
@@ -39,11 +51,8 @@ export const Home = (props: { searchValue: string }) => {
   return (
       <div className='container'>
         <div className='content__top'>
-          <Categories value={activeCat} onClickCategoryHandler={(idx: SetStateAction<number>) => setActiveCat(idx)} />
-          <Sort value={selectedSort}
-                onClickSortHandler={(idx: SetStateAction<{ name: string; sortProperty: string; }>) =>
-                    setSelectedSort(idx)}
-          />
+          <Categories value={categoryId} onClickCategoryHandler={(idx: number) => onClickCategoryHandler(idx)} />
+          <Sort />
         </div>
         <h2 className='content__title'>Все изделия</h2>
         <div className='content__items'>

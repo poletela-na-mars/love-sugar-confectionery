@@ -1,21 +1,19 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-// TODO - set type
-export const Sort = ({value, onClickSortHandler}: any) => {
+import { FilterState, setSort } from '../redux/slices/filterSlice';
+import { sortList } from '../consts';
+
+export const Sort = () => {
+  const dispatch = useDispatch();
+  const selectSort = (state: FilterState) => state.filterSlice.sort;
+  const sort = useSelector(selectSort);
+
   const [openPopup, setOpenPopup] = useState(false);
-  // const [selectedSort, setSelectedSort] = useState(0);
-  // const sortList = ['популярности', 'цене', 'алфавиту'];
-  const sortList = [
-    {name: 'возрастанию популярности', sortProperty: 'rating'},
-    {name: 'убыванию популярности', sortProperty: '-rating'},
-    {name: 'возрастанию цены', sortProperty: 'price'},
-    {name: 'убыванию цены', sortProperty: '-price'},
-    {name: 'алфавиту', sortProperty: 'title'},
-    {name: 'обр. алфавиту', sortProperty: '-title'}
-  ];
 
+  // TODO - add type interface
   const onClickSortHandlerLoc = (sort: { name: string; sortProperty: string; }) => {
-    onClickSortHandler(sort);
+    dispatch(setSort(sort));
     setOpenPopup(false);
   };
 
@@ -35,16 +33,16 @@ export const Sort = ({value, onClickSortHandler}: any) => {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span onClick={() => setOpenPopup(!openPopup)}>{value.name}</span>
+          <span onClick={() => setOpenPopup(!openPopup)}>{sort.name}</span>
         </div>
         {
             openPopup && (
                 <div className='sort__popup'>
                   <ul>
                     {
-                      sortList.map((sort, idx) => (
-                          <li key={idx} onClick={() => onClickSortHandlerLoc(sort)}
-                              className={value.sortProperty === sort.sortProperty ? 'active' : ''}>{sort.name}</li>
+                      sortList.map((sortEl, idx) => (
+                          <li key={idx} onClick={() => onClickSortHandlerLoc(sortEl)}
+                              className={sort.sortProperty === sortEl.sortProperty ? 'active' : ''}>{sortEl.name}</li>
                       ))
                     }
                   </ul>
