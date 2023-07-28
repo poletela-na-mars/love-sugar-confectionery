@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FilterState, setSort } from '../redux/slices/filterSlice';
@@ -8,6 +8,7 @@ export const Sort = () => {
   const dispatch = useDispatch();
   const selectSort = (state: FilterState) => state.filterSlice.sort;
   const sort = useSelector(selectSort);
+  const sortRef = useRef<HTMLDivElement | null>(null);
 
   const [openPopup, setOpenPopup] = useState(false);
 
@@ -17,8 +18,22 @@ export const Sort = () => {
     setOpenPopup(false);
   };
 
+  useEffect(() => {
+    // TODO - difficulties with type
+    const clickOutsideHandler = (event: any) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setOpenPopup(false);
+      }
+    };
+
+    document.body.addEventListener('click', clickOutsideHandler);
+    return () => {
+      document.body.removeEventListener('click', clickOutsideHandler);
+    }
+  }, []);
+
   return (
-      <div className='sort'>
+      <div ref={sortRef} className='sort'>
         <div className='sort__label'>
           <svg
               width='10'

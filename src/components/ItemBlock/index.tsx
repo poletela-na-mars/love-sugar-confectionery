@@ -1,10 +1,22 @@
 import { useState } from 'react';
 import images from '../../assets/img';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addItem, CartState, ReduxProduct } from '../../redux/slices/cartSlice';
+
+import { typeNames } from '../../consts';
+import { Product } from '../../types';
 
 // TODO - extract to type file
 //      - change font
+//      - add '-' to decrease amount of product
 
-export const ItemBlock = ({title, price, imageUrl, types}: any) => {
+export const ItemBlock = (props: Product) => {
+  const dispatch = useDispatch();
+  const selectCart = (state: CartState) => state.cartSlice.items.find((obj: ReduxProduct) => obj.id === props.id);
+  const cartItem = useSelector(selectCart);
+  const count = cartItem ? cartItem.count : 0;
+
   const [itemCount, setItemCount] = useState(0);
   const [activeType, setActiveType] = useState(0);
 
@@ -12,6 +24,15 @@ export const ItemBlock = ({title, price, imageUrl, types}: any) => {
     if (itemCount < 99) {
       setItemCount(itemCount + 1);
     }
+
+    const item = {
+      id: props.id,
+      title: props.title,
+      price: props.price,
+      imageUrl: props.imageUrl,
+      types: typeNames[activeType],
+    };
+    dispatch(addItem(item));
   };
 
   return (
@@ -19,21 +40,21 @@ export const ItemBlock = ({title, price, imageUrl, types}: any) => {
         <div className='pizza-block'>
           <img
               className='pizza-block__image'
-              src={images[imageUrl]}
-              alt={title}
+              src={images[props.imageUrl]}
+              alt={props.title}
           />
-          <h4 className='pizza-block__title'>{title}</h4>
+          <h4 className='pizza-block__title'>{props.title}</h4>
           <div className='pizza-block__selector'>
             <ul>
               {
-                types?.map((type: string, idx: number) => <li key={idx} onClick={() => setActiveType(idx)}
+                props.types?.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(idx)}
                                                               className={activeType === idx ? 'active' :
-                                                                  ''}>{type}</li>)
+                                                                  ''}>{typeNames[type]}</li>)
               }
             </ul>
           </div>
           <div className='pizza-block__bottom'>
-            <div className='pizza-block__price'>от {price} ₽</div>
+            <div className='pizza-block__price'>от {props.price} ₽</div>
             <button onClick={onClickAddButtonHandler} className='button button--outline button--add'>
               <svg
                   width='12'
@@ -48,7 +69,7 @@ export const ItemBlock = ({title, price, imageUrl, types}: any) => {
                 />
               </svg>
               <span>Добавить</span>
-              <i>{itemCount}</i>
+              {count > 0 && <i>{count}</i>}
             </button>
           </div>
         </div>

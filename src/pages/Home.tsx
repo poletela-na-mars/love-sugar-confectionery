@@ -11,11 +11,11 @@ import { Categories, ItemBlock, Pagination, Sort } from '../components';
 import { Skeleton } from '../components/ItemBlock/Skeleton';
 
 import { sortList } from '../consts';
+import { Product } from '../types';
 
 export const Home = () => {
-  const [products, setProducts] = useState<any>([]);
-  // TODO - set correct type for product
-  //      - fix a circle for amount of product
+  const [products, setProducts] = useState<Product[]>([]);
+  // TODO - fix a circle for amount of product
   const [isLoading, setIsLoading] = useState(true);
 
   const selectState = (state: FilterState) => state.filterSlice;
@@ -91,7 +91,7 @@ export const Home = () => {
   }, [categoryId, sort.sortProperty, currentPage]);
 
   const mappedProducts = products
-      .map((product: { id: any; }) => <ItemBlock key={product.id} {...product} />);
+      .map((product: Product) => <ItemBlock key={product.id} {...product} />);
   const skeletons = [...new Array(6)].map((_, idx) => <Skeleton key={idx} />);
 
   return (

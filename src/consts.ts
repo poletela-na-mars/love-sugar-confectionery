@@ -6,3 +6,5 @@ export const sortList = [
   { name: 'убыванию цены', sortProperty: '-price' },
   { name: 'алфавиту', sortProperty: 'title' },
 ];
+
+export const typeNames = ['стандартный', 'половина', 'кусочек', 'целый'];
