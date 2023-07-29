@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { Product } from '../../types';
 
 export interface ReduxProduct extends Product {
@@ -22,12 +23,12 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      const findItem: ReduxProduct | undefined = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id);
+      const findItem: ReduxProduct = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id)!;
 
       if (findItem) {
-        // @ts-ignore
         findItem.count++;
       } else {
+        // difficulties with types
         // @ts-ignore
         state.items.push({
           ...action.payload,
@@ -36,18 +37,31 @@ const cartSlice = createSlice({
       }
 
       state.totalPrice = state.items.reduce((sum, obj: ReduxProduct) => {
-        return obj.price + sum;
+        return (obj.price * obj.count) + sum;
       }, 0);
     },
     removeItem(state, action) {
       state.items = state.items.filter((obj: ReduxProduct) => obj.id !== action.payload);
     },
+    minusItem(state, action) {
+      const findItem: ReduxProduct = state.items.find((obj: ReduxProduct) => obj.id === action.payload)!;
+
+      if (findItem) {
+        if (findItem.count > 1) findItem.count--;
+        else {
+          console.log(action.payload)
+
+          cartSlice.caseReducers.removeItem(state, action);
+        }
+      }
+    },
     clearItems(state) {
       state.items = [];
+      state.totalPrice = 0;
     }
   }
 });
 
-export const { clearItems, removeItem, addItem } = cartSlice.actions;
+export const { clearItems, removeItem, addItem, minusItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

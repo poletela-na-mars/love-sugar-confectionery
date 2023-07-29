@@ -18,7 +18,7 @@ export const ItemBlock = (props: Product) => {
   const count = cartItem ? cartItem.count : 0;
 
   const [itemCount, setItemCount] = useState(0);
-  const [activeType, setActiveType] = useState(0);
+  const [activeType, setActiveType] = useState(props.types[0]);
 
   const onClickAddButtonHandler = () => {
     if (itemCount < 99) {
@@ -47,8 +47,8 @@ export const ItemBlock = (props: Product) => {
           <div className='pizza-block__selector'>
             <ul>
               {
-                props.types?.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(idx)}
-                                                              className={activeType === idx ? 'active' :
+                props.types.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(type)}
+                                                              className={activeType === type ? 'active' :
                                                                   ''}>{typeNames[type]}</li>)
               }
             </ul>

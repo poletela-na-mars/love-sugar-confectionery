@@ -125,6 +125,13 @@ body {
     cursor: pointer;
     @include noselect();
 
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    outline: inherit;
+
     span {
       display: inline-block;
       margin-left: 7px;
@@ -200,11 +207,16 @@ body {
       width: 13%;
 
       &-minus {
+        margin-right: 10px;
         svg {
           path:first-of-type {
             display: none;
           }
         }
+      }
+
+      &-plus {
+        margin-left: 10px;
       }
 
       b {
@@ -230,6 +242,14 @@ body {
       align-items: center;
       justify-content: flex-end;
       width: 4%;
+
+      background: none;
+      color: inherit;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
@@ -325,7 +345,7 @@ body {
   }
 
   &--empty {
-    margin: 0 auto;
+    margin: 80px auto;
     width: 560px;
     text-align: center;
 
@@ -339,11 +359,6 @@ body {
       line-height: 145.4%;
       letter-spacing: 0.01em;
       color: #777777;
-    }
-
-    icon {
-      position: relative;
-      top: 2px;
     }
 
     img {
