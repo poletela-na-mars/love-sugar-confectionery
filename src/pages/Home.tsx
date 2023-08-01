@@ -1,12 +1,12 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
 import { SearchContext } from '../App';
 import { FilterState, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { ProductsState, setItems } from '../redux/slices/productsSlice';
+import { fetchProducts, ProductsState } from '../redux/slices/productsSlice';
+import { AppDispatch } from '../redux/store';
 
 import { Categories, ItemBlock, Pagination, Sort } from '../components';
 import { Skeleton } from '../components/ItemBlock/Skeleton';
@@ -16,38 +16,33 @@ import { Product } from '../types';
 
 export const Home = () => {
   // TODO - fix a circle for amount of product
-  const [isLoading, setIsLoading] = useState(true);
-
   const selectState = (state: FilterState) => state.filterSlice;
   const { categoryId, sort, currentPage } = useSelector(selectState);
 
   const selectProducts = (state: ProductsState) => state.productsSlice;
-  const { products } = useSelector(selectProducts);
+  const { products, status } = useSelector(selectProducts);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const isSearch = useRef<boolean>(false);
   const isMounted = useRef<boolean>(false);
 
   const { searchValue } = useContext(SearchContext);
 
-  const fetchProducts = async () => {
-    setIsLoading(true);
-
+  const getProducts = async () => {
     const sortBy = sort.sortProperty.replace('-', '');
     const order = (sort.sortProperty.includes('-') || sort.sortProperty === 'rating') ? 'desc' : 'asc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    try {
-      const { data } = await axios.get(`https://648e2e662de8d0ea11e89b74.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}${search}`);
-      dispatch(setItems(data));
-    } catch (err) {
-      // TODO - error popup
-      console.log('Error while fetching data: ', err);
-    } finally {
-      setIsLoading(false);
-    }
+    dispatch(fetchProducts({
+          sortBy,
+          order,
+          category,
+          search,
+          currentPage,
+        })
+    );
 
     window.scrollTo(0, 0);
   };
@@ -76,7 +71,7 @@ export const Home = () => {
 
   useEffect(() => {
     if (!isSearch.current) {
-      fetchProducts();
+      getProducts();
     }
 
     isSearch.current = false;
@@ -106,14 +101,20 @@ export const Home = () => {
           <Sort/>
         </div>
         <h2 className='content__title'>Все изделия</h2>
-        <div className='content__items'>
-          {
-            // TODO - remove any
-            isLoading
-                ? skeletons
-                : mappedProducts
-          }
-        </div>
+        {
+          status === 'error'
+              ? <div className='content__error-info'>
+                <h2>Произошла ошибка</h2>
+                <p>К сожалению, не удалось получить данные. Попробуйте повторить попытку позже.</p>
+              </div>
+              : <div className='content__items'>
+                {
+                  status === 'loading'
+                      ? skeletons
+                      : mappedProducts
+                }
+              </div>
+        }
         <Pagination currentPage={currentPage} onChangePage={onPageChangeHandler}/>
       </div>
   );
