@@ -2,7 +2,7 @@ import { useState } from 'react';
 import images from '../../assets/img';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addItem, CartState, ReduxProduct } from '../../redux/slices/cartSlice';
+import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
 
 import { typeNames } from '../../consts';
 import { Product } from '../../types';
@@ -13,8 +13,7 @@ import { Product } from '../../types';
 
 export const ItemBlock = (props: Product) => {
   const dispatch = useDispatch();
-  const selectCart = (state: CartState) => state.cartSlice.items.find((obj: ReduxProduct) => obj.id === props.id);
-  const cartItem = useSelector(selectCart);
+  const cartItem = useSelector(selectCartItemById(props.id));
   const count = cartItem ? cartItem.count : 0;
 
   const [itemCount, setItemCount] = useState(0);
@@ -48,8 +47,8 @@ export const ItemBlock = (props: Product) => {
             <ul>
               {
                 props.types.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(type)}
-                                                              className={activeType === type ? 'active' :
-                                                                  ''}>{typeNames[type]}</li>)
+                                                                   className={activeType === type ? 'active' :
+                                                                       ''}>{typeNames[type]}</li>)
               }
             </ul>
           </div>

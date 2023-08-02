@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { FilterState, setSort } from '../redux/slices/filterSlice';
+import { selectSort, setSort } from '../redux/slices/filterSlice';
+
 import { sortList } from '../consts';
 
 export const Sort = () => {
   const dispatch = useDispatch();
-  const selectSort = (state: FilterState) => state.filterSlice.sort;
   const sort = useSelector(selectSort);
   const sortRef = useRef<HTMLDivElement | null>(null);
 

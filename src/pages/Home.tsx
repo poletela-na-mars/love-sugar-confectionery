@@ -1,11 +1,9 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-
-import { SearchContext } from '../App';
-import { FilterState, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { fetchProducts, ProductsState } from '../redux/slices/productsSlice';
+import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { fetchProducts, selectProducts } from '../redux/slices/productsSlice';
 import { AppDispatch } from '../redux/store';
 
 import { Categories, ItemBlock, Pagination, Sort } from '../components';
@@ -16,18 +14,12 @@ import { Product } from '../types';
 
 export const Home = () => {
   // TODO - fix a circle for amount of product
-  const selectState = (state: FilterState) => state.filterSlice;
-  const { categoryId, sort, currentPage } = useSelector(selectState);
-
-  const selectProducts = (state: ProductsState) => state.productsSlice;
+  const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
   const { products, status } = useSelector(selectProducts);
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const isSearch = useRef<boolean>(false);
   const isMounted = useRef<boolean>(false);
-
-  const { searchValue } = useContext(SearchContext);
 
   const getProducts = async () => {
     const sortBy = sort.sortProperty.replace('-', '');
@@ -65,17 +57,12 @@ export const Home = () => {
         ...params,
         sort
       }));
-      isSearch.current = true;
     }
   }, []);
 
   useEffect(() => {
-    if (!isSearch.current) {
-      getProducts();
-    }
-
-    isSearch.current = false;
-  }, [categoryId, sort.sortProperty, currentPage]);
+    getProducts();
+  }, [categoryId, sort.sortProperty, currentPage, searchValue]);
 
   useEffect(() => {
     if (isMounted.current) {
@@ -92,13 +79,13 @@ export const Home = () => {
   }, [categoryId, sort.sortProperty, currentPage]);
 
   const mappedProducts = products.map((product: Product) => <ItemBlock key={product.id} {...product} />);
-  const skeletons = [...new Array(6)].map((_, idx) => <Skeleton key={idx}/>);
+  const skeletons = [...new Array(6)].map((_, idx) => <Skeleton key={idx} />);
 
   return (
       <div className='container'>
         <div className='content__top'>
-          <Categories value={categoryId} onClickCategoryHandler={(idx: number) => onClickCategoryHandler(idx)}/>
-          <Sort/>
+          <Categories value={categoryId} onClickCategoryHandler={(idx: number) => onClickCategoryHandler(idx)} />
+          <Sort />
         </div>
         <h2 className='content__title'>Все изделия</h2>
         {
@@ -115,7 +102,7 @@ export const Home = () => {
                 }
               </div>
         }
-        <Pagination currentPage={currentPage} onChangePage={onPageChangeHandler}/>
+        <Pagination currentPage={currentPage} onChangePage={onPageChangeHandler} />
       </div>
   );
 };
