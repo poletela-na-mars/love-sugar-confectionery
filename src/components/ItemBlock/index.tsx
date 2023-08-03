@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import images from '../../assets/img';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
 
@@ -37,12 +38,14 @@ export const ItemBlock = (props: Product) => {
   return (
       <div className='item-block-wrapper'>
         <div className='pizza-block'>
-          <img
-              className='pizza-block__image'
-              src={images[props.imageUrl]}
-              alt={props.title}
-          />
-          <h4 className='pizza-block__title'>{props.title}</h4>
+          <Link to={`/product/${props.id}`} key={props.id}>
+            <img
+                className='pizza-block__image'
+                src={images[props.imageUrl]}
+                alt={props.title}
+            />
+            <h4 className='pizza-block__title'>{props.title}</h4>
+          </Link>
           <div className='pizza-block__selector'>
             <ul>
               {
