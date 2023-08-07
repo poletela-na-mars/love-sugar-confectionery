@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import emptyCartImg from './../../assets/img/empty-cart.png';
 
 export const CartEmpty = () => {
@@ -14,4 +15,4 @@ export const CartEmpty = () => {
         </Link>
       </div>
   );
-}
+};

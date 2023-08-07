@@ -2,26 +2,29 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { ReduxProduct } from './cartSlice';
+import { RootState } from '../store';
+import { FetchProductsArgs } from '../../types';
+import { Status } from '../../consts';
 
-export interface ProductsState {
-  productsSlice: {
-    products: ReduxProduct[],
-    status: 'loading' | 'error' | 'success';
-  },
+type ProductsState = {
+  products: ReduxProduct[];
+  status: Status;
 }
 
-export const fetchProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk<ReduxProduct[], FetchProductsArgs>(
     'products/fetchProductsStatus',
-    async (params: { sortBy: string, order: string, category: string, search: string, currentPage: number }) => {
+    async (params) => {
       const { sortBy, order, category, search, currentPage } = params;
-      const { data } = await axios.get(`https://648e2e662de8d0ea11e89b74.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}${search}`);
+      const { data } = await axios.get<ReduxProduct[]>(
+          `https://648e2e662de8d0ea11e89b74.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}${search}`);
+
       return data;
     }
 );
 
-const initialState = {
+const initialState: ProductsState = {
   products: [],
-  status: 'loading',
+  status: Status.LOADING,
 };
 
 const productsSlice = createSlice({
@@ -34,21 +37,21 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
-          state.status = 'loading';
-          state.products = [];
-        })
+      state.status = Status.LOADING;
+      state.products = [];
+    })
         .addCase(fetchProducts.fulfilled, (state, action) => {
           state.products = action.payload;
-          state.status = 'success';
+          state.status = Status.SUCCESS;
         })
         .addCase(fetchProducts.rejected, (state) => {
-          state.status = 'error';
+          state.status = Status.ERROR;
           state.products = [];
         })
   }
 });
 
-export const selectProducts = (state: ProductsState) => state.productsSlice;
+export const selectProducts = (state: RootState) => state.productsSlice;
 
 export const { setProducts } = productsSlice.actions;
 

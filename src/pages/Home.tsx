@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { AppDispatch } from '../redux/store';
 import { Categories, ItemBlock, Pagination, Sort } from '../components';
 import { Skeleton } from '../components/ItemBlock/Skeleton';
 
-import { sortList } from '../consts';
+import { sortList, Status } from '../consts';
 import { Product } from '../types';
 
 export const Home = () => {
@@ -39,12 +39,12 @@ export const Home = () => {
     window.scrollTo(0, 0);
   };
 
-  const onClickCategoryHandler = (id: number) => {
+  const onClickCategoryHandler = useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
-  const onPageChangeHandler = (number: number) => {
-    dispatch(setCurrentPage(number));
+  const onPageChangeHandler = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   useEffect(() => {
@@ -84,8 +84,8 @@ export const Home = () => {
   return (
       <div className='container'>
         <div className='content__top'>
-          <Categories value={categoryId} onClickCategoryHandler={(idx: number) => onClickCategoryHandler(idx)} />
-          <Sort />
+          <Categories value={categoryId} onClickCategoryHandler={onClickCategoryHandler} />
+          <Sort sort={sort} />
         </div>
         <h2 className='content__title'>Все изделия</h2>
         {
@@ -96,7 +96,7 @@ export const Home = () => {
               </div>
               : <div className='content__items'>
                 {
-                  status === 'loading'
+                  status === Status.LOADING
                       ? skeletons
                       : mappedProducts
                 }

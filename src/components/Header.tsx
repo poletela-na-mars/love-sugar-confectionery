@@ -26,7 +26,7 @@ export const Header = () => {
               <h1 hidden>Любим сахар</h1>
               <p>Ваша лучшая кондитерская</p>
             </div>
-            <Search />
+            {location.pathname !== '/cart' && <Search />}
           </div>
           <div className='header__cart'>
             {location.pathname !== '/cart' &&

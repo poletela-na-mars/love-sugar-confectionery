@@ -7,6 +7,7 @@ import './scss/app.scss';
 // TODO - change classNames
 //      - delete products.json
 //      - change price cause of type
+//      - adaptive layout
 
 export const App = () => {
   return (

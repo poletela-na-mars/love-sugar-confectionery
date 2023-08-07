@@ -1,19 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Product } from '../../types';
+import { RootState } from '../store';
 
 export interface ReduxProduct extends Product {
-  count: number,
+  count: number;
 }
 
-export interface CartState {
-  cartSlice: {
-    totalPrice: number,
-    items: ReduxProduct[],
-  },
+type InitialCartState = {
+  totalPrice: number;
+  items: ReduxProduct[];
 }
 
-const initialState = {
+const initialState: InitialCartState = {
   totalPrice: 0,
   items: [],
 };
@@ -23,13 +22,11 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      const findItem: ReduxProduct = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id)!;
+      const findItem = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id)!;
 
       if (findItem) {
         findItem.count++;
       } else {
-        // difficulties with types
-        // @ts-ignore
         state.items.push({
           ...action.payload,
           count: 1,
@@ -40,17 +37,15 @@ const cartSlice = createSlice({
         return (obj.price * obj.count) + sum;
       }, 0);
     },
-    removeItem(state, action) {
+    removeItem(state, action: PayloadAction<number>) {
       state.items = state.items.filter((obj: ReduxProduct) => obj.id !== action.payload);
     },
-    minusItem(state, action) {
+    minusItem(state, action: PayloadAction<number>) {
       const findItem: ReduxProduct = state.items.find((obj: ReduxProduct) => obj.id === action.payload)!;
 
       if (findItem) {
         if (findItem.count > 1) findItem.count--;
         else {
-          console.log(action.payload)
-
           cartSlice.caseReducers.removeItem(state, action);
         }
       }
@@ -62,8 +57,9 @@ const cartSlice = createSlice({
   }
 });
 
-export const selectCart = (state: CartState) => state.cartSlice;
-export const selectCartItemById = (id: number) => (state: CartState) => state.cartSlice.items.find((obj: ReduxProduct) => obj.id === id);
+export const selectCart = (state: RootState) => state.cartSlice;
+export const selectCartItemById = (id: number) => (state: RootState) => state.cartSlice.items.find(
+    (obj: ReduxProduct) => obj.id === id);
 
 export const { clearItems, removeItem, addItem, minusItem } = cartSlice.actions;
 
