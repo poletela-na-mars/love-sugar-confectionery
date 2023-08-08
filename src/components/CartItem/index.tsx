@@ -4,19 +4,26 @@ import { addItem, minusItem, removeItem } from '../../redux/cart/slice';
 import images from '../../assets/img';
 
 import { ReduxProduct } from '../../types';
+import { typeNames } from '../../consts';
 
 export const CartItem = (props: ReduxProduct) => {
   const dispatch = useDispatch();
 
+  const item = {
+    id: props.id,
+    title: props.title,
+    price: props.price,
+    imageUrl: props.imageUrl,
+    types: props.types,
+  };
+
   const onPlusClickHandler = () => {
-    dispatch(addItem({
-      id: props.id,
-    }));
+    dispatch(addItem(item));
   };
 
   const onMinusClickHandler = () => {
     dispatch(
-        minusItem(props.id)
+        minusItem(item)
     );
   };
 
@@ -24,7 +31,7 @@ export const CartItem = (props: ReduxProduct) => {
     //TODO - popup
     if (window.confirm('Вы действительно хотите удалить товар?')) {
       dispatch(
-          removeItem(props.id)
+          removeItem(item)
       );
     }
   };
@@ -39,7 +46,7 @@ export const CartItem = (props: ReduxProduct) => {
         </div>
         <div className="cart__item-info">
           <h3>{props.title}</h3>
-          <p>{props.types}</p>
+          <p>{typeNames[Number(props.types)]}</p>
         </div>
         <div className="cart__item-count">
           <button onClick={onMinusClickHandler}
@@ -85,4 +92,4 @@ export const CartItem = (props: ReduxProduct) => {
         </button>
       </div>
   );
-}
+};

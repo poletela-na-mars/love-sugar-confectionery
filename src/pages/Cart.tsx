@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { clearItems } from '../redux/cart/slice';
@@ -6,13 +7,15 @@ import { selectCart } from '../redux/cart/selectors';
 
 import { CartEmpty, CartItem } from '../components';
 
+import { calcTotalCount } from '../utils/calcTotalCount';
+
 // TODO - promocodes
 
 export const Cart = () => {
   const dispatch = useDispatch();
   const { totalPrice, items } = useSelector(selectCart);
 
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const totalCount = calcTotalCount(items);
 
   const onClearClickHandler = () => {
     //TODO - popup
@@ -63,7 +66,7 @@ export const Cart = () => {
           </div>
           <div className="content__items">
             {
-              items.map((item) => <CartItem key={item.id} {...item} />)
+              items.map((item, idx) => <Fragment key={idx}><CartItem key={item.id} {...item} /></Fragment>)
             }
           </div>
           <div className="cart__bottom">

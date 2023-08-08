@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { addItem } from '../../redux/cart/slice';
-import { selectCartItemById } from '../../redux/cart/selectors';
+import { selectCartItemsById } from '../../redux/cart/selectors';
+import { calcTotalCount } from '../../utils/calcTotalCount';
 
 import { typeNames } from '../../consts';
 import { Product } from '../../types';
@@ -15,8 +16,9 @@ import { Product } from '../../types';
 
 export const ItemBlock = (props: Product) => {
   const dispatch = useDispatch();
-  const cartItem = useSelector(selectCartItemById(props.id));
-  const count = cartItem ? cartItem.count : 0;
+  const cartItems = useSelector(selectCartItemsById(props.id));
+
+  const count = calcTotalCount(cartItems);
 
   const [itemCount, setItemCount] = useState(0);
   const [activeType, setActiveType] = useState(props.types[0]);
@@ -31,8 +33,9 @@ export const ItemBlock = (props: Product) => {
       title: props.title,
       price: props.price,
       imageUrl: props.imageUrl,
-      types: typeNames[activeType],
+      types: activeType,
     };
+
     dispatch(addItem(item));
   };
 

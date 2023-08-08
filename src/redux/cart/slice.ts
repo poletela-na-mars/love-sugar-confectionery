@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { getCartFromLS } from '../../utils/getCartFromLS';
 import { calcTotalPrice } from '../../utils/calcTotalPrice';
@@ -13,7 +13,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      const findItem = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id)!;
+      const findItem = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id && obj.types === action.payload.types)!;
 
       if (findItem) {
         findItem.count++;
@@ -26,11 +26,11 @@ const cartSlice = createSlice({
 
       state.totalPrice = calcTotalPrice(state.items);
     },
-    removeItem(state, action: PayloadAction<number>) {
-      state.items = state.items.filter((obj: ReduxProduct) => obj.id !== action.payload);
+    removeItem(state, action) {
+      state.items = state.items.filter((obj: ReduxProduct) => obj.id !== action.payload.id || obj.types !== action.payload.types);
     },
-    minusItem(state, action: PayloadAction<number>) {
-      const findItem: ReduxProduct = state.items.find((obj: ReduxProduct) => obj.id === action.payload)!;
+    minusItem(state, action) {
+      const findItem: ReduxProduct = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id && obj.types === action.payload.types)!;
 
       if (findItem) {
         if (findItem.count > 1) findItem.count--;
