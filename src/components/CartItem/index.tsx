@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { addItem, minusItem, ReduxProduct, removeItem } from '../../redux/slices/cartSlice';
+import { addItem, minusItem, removeItem } from '../../redux/cart/slice';
 
 import images from '../../assets/img';
+
+import { ReduxProduct } from '../../types';
 
 export const CartItem = (props: ReduxProduct) => {
   const dispatch = useDispatch();

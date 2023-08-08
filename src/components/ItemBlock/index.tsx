@@ -3,7 +3,8 @@ import images from '../../assets/img';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
+import { addItem } from '../../redux/cart/slice';
+import { selectCartItemById } from '../../redux/cart/selectors';
 
 import { typeNames } from '../../consts';
 import { Product } from '../../types';

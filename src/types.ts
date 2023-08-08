@@ -8,6 +8,10 @@ export interface Product {
   imageUrl: string;
 }
 
+export interface ReduxProduct extends Product {
+  count: number;
+}
+
 export interface SortType {
   name: string;
   sortProperty: 'price' | '-price' | 'title' | 'rating';
