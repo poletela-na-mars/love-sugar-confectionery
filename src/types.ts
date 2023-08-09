@@ -8,7 +8,19 @@ export interface Product {
   imageUrl: string;
 }
 
-export interface ReduxProduct extends Product {
+type ProductWithoutTypes = Omit<Product, 'types'>;
+
+export interface ReduxProduct extends ProductWithoutTypes {
+  count: number;
+  types: number;
+}
+
+export interface CartProduct {
+  id: number;
+  title: string;
+  price: number;
+  imageUrl: string;
+  types: number;
   count: number;
 }
 

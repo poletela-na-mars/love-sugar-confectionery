@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getCartFromLS } from '../../utils/getCartFromLS';
 import { calcTotalPrice } from '../../utils/calcTotalPrice';
 
 import { InitialCartState } from './types';
-import { ReduxProduct } from '../../types';
+import { CartProduct } from '../../types';
 
 const initialState: InitialCartState = getCartFromLS();
 
@@ -12,8 +12,9 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItem(state, action) {
-      const findItem = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id && obj.types === action.payload.types)!;
+    addItem(state, action: PayloadAction<CartProduct>) {
+      const findItem = state.items.find(
+          (obj: CartProduct) => obj.id === action.payload.id && obj.types === action.payload.types)!;
 
       if (findItem) {
         findItem.count++;
@@ -27,14 +28,19 @@ const cartSlice = createSlice({
       state.totalPrice = calcTotalPrice(state.items);
     },
     removeItem(state, action) {
-      state.items = state.items.filter((obj: ReduxProduct) => obj.id !== action.payload.id || obj.types !== action.payload.types);
+      state.items =
+          state.items.filter((obj: CartProduct) => obj.id !== action.payload.id || obj.types !== action.payload.types);
+      state.totalPrice = calcTotalPrice(state.items);
     },
     minusItem(state, action) {
-      const findItem: ReduxProduct = state.items.find((obj: ReduxProduct) => obj.id === action.payload.id && obj.types === action.payload.types)!;
+      const findItem = state.items.find(
+          (obj: CartProduct) => obj.id === action.payload.id && obj.types === action.payload.types)!;
 
       if (findItem) {
-        if (findItem.count > 1) findItem.count--;
-        else {
+        if (findItem.count > 1) {
+          findItem.count--;
+          state.totalPrice = calcTotalPrice(state.items);
+        } else {
           cartSlice.caseReducers.removeItem(state, action);
         }
       }

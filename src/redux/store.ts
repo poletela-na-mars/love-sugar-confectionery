@@ -3,7 +3,6 @@ import filterSlice from './filter/slice';
 import cartSlice from './cart/slice';
 import productsSlice from './product/slice';
 
-// TODO - re-export
 export const store = configureStore({
   reducer: {
     filterSlice,

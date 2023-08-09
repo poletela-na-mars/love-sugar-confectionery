@@ -1,7 +1,7 @@
-import { ReduxProduct } from '../../types';
+import { Product } from '../../types';
 import { Status } from '../../consts';
 
 export type ProductsState = {
-  products: ReduxProduct[];
+  products: Product[];
   status: Status;
 }

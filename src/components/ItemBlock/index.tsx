@@ -8,32 +8,33 @@ import { selectCartItemsById } from '../../redux/cart/selectors';
 import { calcTotalCount } from '../../utils/calcTotalCount';
 
 import { typeNames } from '../../consts';
-import { Product } from '../../types';
+import { CartProduct, Product } from '../../types';
 
-// TODO - extract to type file
+// TODO
 //      - change font
 //      - add '-' to decrease amount of product
 
-export const ItemBlock = (props: Product) => {
+export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItemsById(props.id));
+  const cartItems = useSelector(selectCartItemsById(id));
 
   const count = calcTotalCount(cartItems);
 
   const [itemCount, setItemCount] = useState(0);
-  const [activeType, setActiveType] = useState(props.types[0]);
+  const [activeType, setActiveType] = useState(types[0]);
 
   const onClickAddButtonHandler = () => {
     if (itemCount < 99) {
       setItemCount(itemCount + 1);
     }
 
-    const item = {
-      id: props.id,
-      title: props.title,
-      price: props.price,
-      imageUrl: props.imageUrl,
+    const item: CartProduct = {
+      id,
+      title,
+      price,
+      imageUrl,
       types: activeType,
+      count: 0,
     };
 
     dispatch(addItem(item));
@@ -42,25 +43,25 @@ export const ItemBlock = (props: Product) => {
   return (
       <div className='item-block-wrapper'>
         <div className='pizza-block'>
-          <Link to={`/product/${props.id}`} key={props.id}>
+          <Link to={`/product/${id}`} key={id}>
             <img
                 className='pizza-block__image'
-                src={images[props.imageUrl]}
-                alt={props.title}
+                src={images[imageUrl]}
+                alt={title}
             />
-            <h4 className='pizza-block__title'>{props.title}</h4>
+            <h4 className='pizza-block__title'>{title}</h4>
           </Link>
           <div className='pizza-block__selector'>
             <ul>
               {
-                props.types.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(type)}
-                                                                   className={activeType === type ? 'active' :
-                                                                       ''}>{typeNames[type]}</li>)
+                types.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(type)}
+                                                             className={activeType === type ? 'active' :
+                                                                 ''}>{typeNames[type]}</li>)
               }
             </ul>
           </div>
           <div className='pizza-block__bottom'>
-            <div className='pizza-block__price'>от {props.price} ₽</div>
+            <div className='pizza-block__price'>от {price} ₽</div>
             <button onClick={onClickAddButtonHandler} className='button button--outline button--add'>
               <svg
                   width='12'

@@ -1,5 +1,5 @@
-import { ReduxProduct } from '../types';
+import { CartProduct } from '../types';
 
-export const calcTotalCount = (items: ReduxProduct[]) => {
+export const calcTotalCount = (items: CartProduct[]) => {
   return items.reduce((count, obj) => obj.count + count, 0);
 };

@@ -1,6 +1,6 @@
-import { ReduxProduct } from '../../types';
+import { CartProduct } from '../../types';
 
 export type InitialCartState = {
   totalPrice: number;
-  items: ReduxProduct[];
+  items: CartProduct[];
 }

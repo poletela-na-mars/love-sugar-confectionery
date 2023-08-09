@@ -3,18 +3,19 @@ import { addItem, minusItem, removeItem } from '../../redux/cart/slice';
 
 import images from '../../assets/img';
 
-import { ReduxProduct } from '../../types';
+import { CartProduct } from '../../types';
 import { typeNames } from '../../consts';
 
-export const CartItem = (props: ReduxProduct) => {
+export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProduct) => {
   const dispatch = useDispatch();
 
-  const item = {
-    id: props.id,
-    title: props.title,
-    price: props.price,
-    imageUrl: props.imageUrl,
-    types: props.types,
+  const item: CartProduct = {
+    id,
+    title,
+    price,
+    imageUrl,
+    types,
+    count,
   };
 
   const onPlusClickHandler = () => {
@@ -41,12 +42,12 @@ export const CartItem = (props: ReduxProduct) => {
         <div className="cart__item-img">
           <img
               className="pizza-block__image"
-              src={images[props.imageUrl]}
+              src={images[imageUrl]}
               alt="Pizza" />
         </div>
         <div className="cart__item-info">
-          <h3>{props.title}</h3>
-          <p>{typeNames[Number(props.types)]}</p>
+          <h3>{title}</h3>
+          <p>{typeNames[types]}</p>
         </div>
         <div className="cart__item-count">
           <button onClick={onMinusClickHandler}
@@ -61,7 +62,7 @@ export const CartItem = (props: ReduxProduct) => {
             </svg>
 
           </button>
-          <b>{props.count}</b>
+          <b>{count}</b>
           <button onClick={onPlusClickHandler} className="button button--outline button--circle cart__item-count-plus">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -75,7 +76,7 @@ export const CartItem = (props: ReduxProduct) => {
           </button>
         </div>
         <div className="cart__item-price">
-          <b>{props.price * props.count} ₽</b>
+          <b>{price * count} ₽</b>
         </div>
         <button onClick={onRemoveClickHandler} className="cart__item-remove">
           <div className="button button--outline button--circle">
