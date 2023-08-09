@@ -1,5 +1,10 @@
 .root {
+  margin: 20px 20px;
   text-align: center;
+}
+.root p {
+  font-size: 24px;
+  margin: 10px 0;
 }
 
 /*# sourceMappingURL=NotFoundBlock.module.css.map */

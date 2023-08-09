@@ -7,3 +7,4 @@ export * from './Search';
 export * from './Pagination';
 export * from './CartItem';
 export * from './CartEmpty';
+export * from './NotFoundProductsBlock';

@@ -8,10 +8,10 @@ import { selectProducts } from '../redux/product/selectors';
 import { fetchProducts } from '../redux/product/asyncActions';
 import { AppDispatch } from '../redux/store';
 
-import { Categories, ItemBlock, Pagination, Sort } from '../components';
+import { Categories, ItemBlock, NotFoundProductsBlock, Pagination, Sort } from '../components';
 import { Skeleton } from '../components/ItemBlock/Skeleton';
 
-import { sortList, Status } from '../consts';
+import { Order, sortList, Status } from '../consts';
 import { Product } from '../types';
 
 export const Home = () => {
@@ -24,7 +24,7 @@ export const Home = () => {
 
   const getProducts = async () => {
     const sortBy = sort.sortProperty.replace('-', '');
-    const order = (sort.sortProperty.includes('-') || sort.sortProperty === 'rating') ? 'desc' : 'asc';
+    const order = (sort.sortProperty.includes('-') || sort.sortProperty === 'rating') ? Order.DESC : Order.ASC;
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
@@ -99,7 +99,7 @@ export const Home = () => {
                 {
                   status === Status.LOADING
                       ? skeletons
-                      : mappedProducts
+                      : (mappedProducts.length ? mappedProducts : <NotFoundProductsBlock />)
                 }
               </div>
         }

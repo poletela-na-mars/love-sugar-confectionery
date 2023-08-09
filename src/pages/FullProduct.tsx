@@ -1,7 +1,8 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { CategoriesList } from '../consts';
 import images from '../assets/img';
 import { Product } from '../types';
 
@@ -26,21 +27,25 @@ export const FullProduct = () => {
   }, []);
 
   if (!product) {
-    // TODO - beautify
     return (
         <div className='container'>
-          <h2>Загрузка...</h2>
+          <h2 className='loading'>Загрузка...</h2>
         </div>
     );
   }
 
+  // TODO - description, composition, add to cart buttons can be added
   return (
       <div className='container'>
-        <img className='pizza-block__image'
-             src={images[product.imageUrl]}
-             alt={product.title} />
-        <h2>{product.title}</h2>
-        <p>{product.price} ₽</p>
+        <div className='full-product-block'>
+          <Link to={`/?sortProperty=rating&categoryId=${product.category}&currentPage=1`}>
+            <p>{CategoriesList[product.category]}</p></Link>
+          <img className='pizza-block__image'
+               src={images[product.imageUrl]}
+               alt={product.title} />
+          <h2>{product.title}</h2>
+          <p>{product.price} ₽</p>
+        </div>
       </div>
   )
 };

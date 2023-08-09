@@ -1,5 +1,7 @@
 import { SortType } from './types';
 
+export const ServerURL = 'https://648e2e662de8d0ea11e89b74.mockapi.io/items';
+
 export const CategoriesList = ['Все', 'Торты', 'Пирожные', 'Выпечка', 'Хлеб', 'Мороженое'];
 
 export enum SortProperty {
@@ -7,6 +9,11 @@ export enum SortProperty {
   TITLE_DESC = 'title',
   PRICE_DESC = 'price',
   PRICE_ASC = '-price',
+}
+
+export enum Order {
+  DESC = 'desc',
+  ASC = 'asc',
 }
 
 export const sortList: SortType[] = [

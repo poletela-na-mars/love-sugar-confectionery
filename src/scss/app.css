@@ -439,6 +439,24 @@ body {
   width: 90%;
   margin: 0 auto;
 }
+.container .full-product-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .full-product-block * + * {
+  margin: 20px 20px 0 20px;
+}
+.container .full-product-block p {
+  font-weight: 400;
+  font-size: 24px;
+}
+.container .loading {
+  text-align: center;
+  font-weight: 600;
+  margin: 40px 0;
+}
 .container--cart {
   max-width: 820px;
   margin: 90px auto;
