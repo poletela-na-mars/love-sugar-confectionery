@@ -10,10 +10,6 @@ import { calcTotalCount } from '../../utils/calcTotalCount';
 import { typeNames } from '../../consts';
 import { CartProduct, Product } from '../../types';
 
-// TODO
-//      - change font
-//      - add '-' to decrease amount of product
-
 export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItemsById(id));
@@ -76,7 +72,7 @@ export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
                 />
               </svg>
               <span>Добавить</span>
-              {count > 0 && <i>{count}</i>}
+              {count > 0 && <b>{count}</b>}
             </button>
           </div>
         </div>

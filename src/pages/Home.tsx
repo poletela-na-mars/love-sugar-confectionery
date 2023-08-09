@@ -15,7 +15,6 @@ import { sortList, Status } from '../consts';
 import { Product } from '../types';
 
 export const Home = () => {
-  // TODO - fix a circle for amount of product
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
   const { products, status } = useSelector(selectProducts);
 

@@ -107,13 +107,13 @@
     }
 
     &:hover {
-      i {
+      b {
         background-color: #fff;
         color: $pink;
       }
     }
 
-    i {
+    b {
       margin-left: 7px;
       display: inline-block;
       border-radius: 30px;
@@ -122,8 +122,7 @@
       font-weight: 600;
       width: 22px;
       height: 22px;
-      font-style: normal;
-      font-size: 13px;
+      font-size: 11px;
       line-height: 22px;
       position: relative;
       top: -1px;

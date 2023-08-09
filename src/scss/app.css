@@ -3,7 +3,7 @@
   margin: 0;
   list-style: none;
   outline: none;
-  font-family: "Nunito", Roboto, system-ui, Tahoma, sans-serif;
+  font-family: "Raleway", Roboto, system-ui, Tahoma, sans-serif;
   box-sizing: border-box;
 }
 
@@ -173,11 +173,11 @@ a {
   font-size: 16px;
   margin: 0 2px;
 }
-.button--add:hover i {
+.button--add:hover b {
   background-color: #fff;
   color: #ff3399;
 }
-.button--add i {
+.button--add b {
   margin-left: 7px;
   display: inline-block;
   border-radius: 30px;
@@ -186,8 +186,7 @@ a {
   font-weight: 600;
   width: 22px;
   height: 22px;
-  font-style: normal;
-  font-size: 13px;
+  font-size: 11px;
   line-height: 22px;
   position: relative;
   top: -1px;
