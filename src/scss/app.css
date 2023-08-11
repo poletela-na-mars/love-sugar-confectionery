@@ -694,4 +694,48 @@ body {
   font-size: 18px;
 }
 
+.popup {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 20px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.09);
+  background-color: #FFF;
+  border-radius: 30px;
+  border: #f6f6f6 1px solid;
+}
+.popup p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: 0.01em;
+  padding: 10px 0;
+}
+.popup span {
+  color: #ff3399;
+}
+.popup__buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+.popup__buttons-container button {
+  cursor: pointer;
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #ff3399;
+  border-radius: 20px;
+  border: #f6f6f6 1px solid;
+  padding: 8px 15px;
+  margin: 5px 5px;
+}
+
 /*# sourceMappingURL=app.css.map */

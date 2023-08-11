@@ -8,3 +8,4 @@ export * from './Pagination';
 export * from './CartItem';
 export * from './CartEmpty';
 export * from './NotFoundProductsBlock';
+export * from './Popup';

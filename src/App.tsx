@@ -5,9 +5,9 @@ import { MainLayout } from './layouts/MainLayout';
 import './scss/app.scss';
 
 // TODO - change classNames
-//      - delete products.json
-//      - change price cause of type
-//      - adaptive layout
+// TODO - delete products.json
+// TODO - change price cause of type
+// TODO - adaptive layout
 
 export const App = () => {
   return (
