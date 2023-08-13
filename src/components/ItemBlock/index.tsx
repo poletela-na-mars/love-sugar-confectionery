@@ -27,7 +27,7 @@ export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
     const item: CartProduct = {
       id,
       title,
-      price,
+      price: price[activeType],
       imageUrl,
       types: activeType,
       count: 0,
@@ -57,7 +57,7 @@ export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
             </ul>
           </div>
           <div className='pizza-block__bottom'>
-            <div className='pizza-block__price'>от {price} ₽</div>
+            <div className='pizza-block__price'>{price[activeType]} ₽</div>
             <button onClick={onClickAddButtonHandler} className='button button--outline button--add'>
               <svg
                   width='12'

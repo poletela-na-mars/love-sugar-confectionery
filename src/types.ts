@@ -1,8 +1,10 @@
+type Price = Record<number, number>;
+
 export interface Product {
   id: number;
   types: number[];
   title: string;
-  price: number;
+  price: Price;
   rating: number;
   category: number;
   imageUrl: string;

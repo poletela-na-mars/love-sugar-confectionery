@@ -27,6 +27,7 @@ const images: Record<string, string> = {
   donuts,
   easterCake,
   eskimo,
+
   macaroons,
   mangoCake,
   nutCake,

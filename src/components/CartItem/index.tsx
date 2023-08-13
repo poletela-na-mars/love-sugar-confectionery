@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addItem, minusItem, removeItem } from '../../redux/cart/slice';
 
 import images from '../../assets/img';
@@ -52,12 +53,14 @@ export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProdu
         }
 
         <div className="cart__item">
-          <div className="cart__item-img">
-            <img
-                className="pizza-block__image"
-                src={images[imageUrl]}
-                alt="Pizza" />
-          </div>
+          <Link to={`/product/${id}`} key={id}>
+            <div className="cart__item-img">
+              <img
+                  className="pizza-block__image"
+                  src={images[imageUrl]}
+                  alt="Pizza" />
+            </div>
+          </Link>
           <div className="cart__item-info">
             <h3>{title}</h3>
             <p>{typeNames[types]}</p>

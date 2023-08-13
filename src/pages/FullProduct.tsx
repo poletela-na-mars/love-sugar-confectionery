@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { Popup } from '../components';
 
-import { CategoriesList, ServerURL } from '../consts';
+import { CategoriesList, ServerURL, typeNames } from '../consts';
 import images from '../assets/img';
 import { Product } from '../types';
 
@@ -27,7 +27,7 @@ export const FullProduct = () => {
     fetchProduct();
   }, [id]);
 
-  // TODO - description, composition, add to cart buttons can be added
+  // TODO - description, composition (состав), add to cart buttons can be added
   return (
       <div className='container'>
         {
@@ -47,7 +47,10 @@ export const FullProduct = () => {
                      src={images[product.imageUrl]}
                      alt={product.title} />
                 <h2>{product.title}</h2>
-                <p>{product.price} ₽</p>
+                {
+                  Object.entries(product.price).map((obj, idx) =>
+                      <p key={idx}>{`${typeNames[Number(obj[0])]} - ${obj[1]}`} ₽</p>)
+                }
               </div>
         }
       </div>

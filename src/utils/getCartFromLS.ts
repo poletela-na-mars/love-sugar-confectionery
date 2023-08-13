@@ -1,5 +1,5 @@
 import { calcTotalPrice } from './calcTotalPrice';
-import { ReduxProduct } from '../types';
+import { CartProduct } from '../types';
 
 export const getCartFromLS = () => {
   const data = localStorage.getItem('cart');
@@ -7,7 +7,7 @@ export const getCartFromLS = () => {
   const totalPrice = calcTotalPrice(items);
 
   return {
-    items: items as ReduxProduct[],
+    items: items as CartProduct[],
     totalPrice,
   }
 };

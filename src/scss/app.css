@@ -287,12 +287,12 @@ a {
 }
 
 .pizza-block {
+  padding: 10px;
   width: 280px;
   text-align: center;
   margin-bottom: 65px;
 }
 .pizza-block:hover {
-  padding: 10px;
   transform: scale(1.1);
   border-radius: 10px;
   -webkit-box-shadow: 4px 4px 19px 0px rgba(119, 121, 122, 0.2);
@@ -348,6 +348,7 @@ a {
   margin: 20px 0;
 }
 .pizza-block__price {
+  margin: auto;
   font-weight: bold;
   font-size: 22px;
   line-height: 27px;
