@@ -5,7 +5,6 @@ import { MainLayout } from './layouts/MainLayout';
 import './scss/app.scss';
 
 // TODO - change classNames
-// TODO - delete products.json
 // TODO - adaptive layout
 
 export const App = () => {

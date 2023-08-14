@@ -92,7 +92,7 @@ export const Cart = () => {
                           strokeLinejoin='round' />
                   </svg>
 
-                  <span>Вернуться назад</span>
+                  <span>Вернуться в магазин</span>
                 </Link>
                 <div className='button pay-btn'>
                   <span>Оплатить сейчас</span>

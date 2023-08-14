@@ -8,6 +8,7 @@ export interface Product {
   rating: number;
   category: number;
   imageUrl: string;
+  composition: string;
 }
 
 export interface CartProduct {
