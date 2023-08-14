@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addItem, minusItem, removeItem } from '../../redux/cart/slice';
@@ -6,7 +7,6 @@ import images from '../../assets/img';
 
 import { CartProduct } from '../../types';
 import { typeNames } from '../../consts';
-import React, { useState } from 'react';
 
 import { Popup } from '../Popup';
 
@@ -28,6 +28,11 @@ export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProdu
   };
 
   const onMinusClickHandler = () => {
+    if (count === 1) {
+      setIsPopupOpen(true);
+      return;
+    }
+
     dispatch(
         minusItem(item)
     );
@@ -110,6 +115,5 @@ export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProdu
           </button>
         </div>
       </>
-  )
-      ;
+  );
 };

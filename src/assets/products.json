@@ -136,5 +136,87 @@
     },
     "category": 5,
     "rating": 5
+  },
+  {
+    "id": "10",
+    "imageUrl": "macaroons",
+    "title": "Макаруны",
+    "types": [
+      0
+    ],
+    "price": {
+      "0": 119
+    },
+    "category": 2,
+    "rating": 3
+  },
+  {
+    "id": "11",
+    "imageUrl": "mangoCake",
+    "title": "Муссовый торт Манго",
+    "types": [
+      0
+    ],
+    "price": {
+      "0": 99
+    },
+    "category": 1,
+    "rating": 4
+  },
+  {
+    "id": "12",
+    "imageUrl": "nutCake",
+    "title": "Ореховый торт",
+    "types": [
+      2,
+      3
+    ],
+    "price": {
+      "2": 99,
+      "3": 899
+    },
+    "category": 1,
+    "rating": 6
+  },
+  {
+    "id": "13",
+    "imageUrl": "redCake",
+    "title": "Торт Красный бархат",
+    "types": [
+      2,
+      3
+    ],
+    "price": {
+      "2": 79,
+      "3": 599
+    },
+    "category": 1,
+    "rating": 7
+  },
+  {
+    "id": "14",
+    "imageUrl": "strawberryIceCream",
+    "title": "Клубничный пломбир",
+    "types": [
+      0
+    ],
+    "price": {
+      "0": 89
+    },
+    "category": 5,
+    "rating": 7
+  },
+  {
+    "id": "15",
+    "imageUrl": "strawberryTart",
+    "title": "Клубничная тарталетка",
+    "types": [
+      0
+    ],
+    "price": {
+      "0": 99
+    },
+    "category": 2,
+    "rating": 8
   }
 ]

@@ -115,6 +115,31 @@ body {
     }
   }
 
+  .full-product__selector {
+    ul {
+      margin: 0;
+
+      li {
+        margin: 0;
+      }
+    }
+  }
+
+  .full-product__bottom {
+
+  }
+
+  .full-product__button-add {
+    margin-top: 0;
+
+    b {
+      margin: 0 0 0 7px;
+    }
+  }
+
+  .full-product__price {
+  }
+
   .loading {
     text-align: center;
     font-weight: 600;
@@ -246,6 +271,7 @@ body {
 
       &-minus {
         margin-right: 10px;
+
         svg {
           path:first-of-type {
             display: none;

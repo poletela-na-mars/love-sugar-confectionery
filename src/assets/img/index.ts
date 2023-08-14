@@ -1,6 +1,6 @@
 import bread from './bread.jpg';
-import brownie from  './brownie.jpg';
-import carrotCake from  './carrot-cake.jpg';
+import brownie from './brownie.jpg';
+import carrotCake from './carrot-cake.jpg';
 import cherryPie from './cherry-pie.jpg';
 import chocolateCake from './chocolate-cake.jpg';
 import cinnamonRoll from './cinnamon-roll.jpg';
@@ -19,7 +19,6 @@ const images: Record<string, string> = {
   bread,
   brownie,
   carrotCake,
-
   cherryPie,
   chocolateCake,
   cinnamonRoll,
@@ -27,7 +26,6 @@ const images: Record<string, string> = {
   donuts,
   easterCake,
   eskimo,
-
   macaroons,
   mangoCake,
   nutCake,
@@ -36,5 +34,3 @@ const images: Record<string, string> = {
   strawberryTart,
 };
 export default images;
-
-// TODO - add info to server

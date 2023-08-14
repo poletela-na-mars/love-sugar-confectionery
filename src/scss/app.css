@@ -453,6 +453,18 @@ body {
   font-weight: 400;
   font-size: 24px;
 }
+.container .full-product__selector ul {
+  margin: 0;
+}
+.container .full-product__selector ul li {
+  margin: 0;
+}
+.container .full-product__button-add {
+  margin-top: 0;
+}
+.container .full-product__button-add b {
+  margin: 0 0 0 7px;
+}
 .container .loading {
   text-align: center;
   font-weight: 600;

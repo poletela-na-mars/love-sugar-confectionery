@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { clearItems } from '../redux/cart/slice';
@@ -77,7 +77,7 @@ export const Cart = () => {
             </div>
             <div className='content__items'>
               {
-                items.map((item, idx) => <Fragment key={idx}><CartItem key={item.id} {...item} /></Fragment>)
+                items.map((item) => <CartItem key={item.id + item.types} {...item} />)
               }
             </div>
             <div className='cart__bottom'>

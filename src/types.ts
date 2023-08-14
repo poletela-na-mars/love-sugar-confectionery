@@ -10,13 +10,6 @@ export interface Product {
   imageUrl: string;
 }
 
-type ProductWithoutTypes = Omit<Product, 'types'>;
-
-export interface ReduxProduct extends ProductWithoutTypes {
-  count: number;
-  types: number;
-}
-
 export interface CartProduct {
   id: number;
   title: string;
