@@ -40,7 +40,7 @@ export const Header = () => {
           <div className='header__cart'>
             {location.pathname !== '/cart' &&
                 <Link to='/cart' className='button button--cart'>
-                  <span>{totalPrice} ₽</span>
+                  <span>{totalPrice}&nbsp;₽</span>
                   <div className='button__delimiter'></div>
                   <svg
                       width='18'

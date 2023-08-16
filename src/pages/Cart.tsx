@@ -82,8 +82,8 @@ export const Cart = () => {
             </div>
             <div className='cart__bottom'>
               <div className='cart__bottom-details'>
-                <span> Всего позиций: <b>{totalCount} шт.</b> </span>
-                <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
+                <span> Всего позиций: <b>{totalCount}&nbsp;шт.</b> </span>
+                <span> Сумма заказа: <b>{totalPrice}&nbsp;₽</b> </span>
               </div>
               <div className='cart__bottom-buttons'>
                 <Link to='/' className='button button--outline button--add go-back-btn'>

@@ -57,7 +57,7 @@ export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
             </ul>
           </div>
           <div className='pizza-block__bottom'>
-            <div className='pizza-block__price'>{price[activeType]} ₽</div>
+            <div className='pizza-block__price'>{price[activeType]}&nbsp;₽</div>
             <button onClick={onClickAddButtonHandler} className='button button--outline button--add'>
               <svg
                   width='12'

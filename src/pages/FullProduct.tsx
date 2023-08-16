@@ -72,6 +72,10 @@ export const FullProduct = () => {
               ? <h2 className='loading'>Загрузка...</h2>
               : <div className='full-product'>
                 <div className='full-product-block'>
+                  <Link to='/' className='button button--black'>
+                    <span>Вернуться назад</span>
+                  </Link>
+
                   <Link to={`/?sortProperty=rating&categoryId=${product.category}&currentPage=1`}>
                     <p className='full-product__category'>{CategoriesList[product.category]}</p></Link>
                   <img className='pizza-block__image'
@@ -91,7 +95,7 @@ export const FullProduct = () => {
                     </ul>
                   </div>
                   <div className='pizza-block__bottom'>
-                    <div className='pizza-block__price'>{product.price[activeType as number]} ₽</div>
+                    <div className='pizza-block__price'>{product.price[activeType as number]}&nbsp;₽</div>
                     <button onClick={onClickAddButtonHandler}
                             className='button button--outline button--add full-product__button-add'>
                       <svg
@@ -106,7 +110,7 @@ export const FullProduct = () => {
                             fill='white'
                         />
                       </svg>
-                      <span>Добавить</span>
+                      {/*<span>Добавить</span>*/}
                       {count > 0 && <b>{count}</b>}
                     </button>
                   </div>
