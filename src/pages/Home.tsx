@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
+
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice';
 import { selectFilter } from '../redux/filter/selectors';
 import { selectProducts } from '../redux/product/selectors';

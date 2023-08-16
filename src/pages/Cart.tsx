@@ -11,7 +11,7 @@ import { calcTotalCount } from '../utils/calcTotalCount';
 
 // TODO - promocodes
 
-export const Cart = () => {
+const Cart = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -104,3 +104,5 @@ export const Cart = () => {
       </>
   );
 };
+
+export default Cart;

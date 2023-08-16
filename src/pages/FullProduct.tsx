@@ -8,12 +8,12 @@ import { Popup } from '../components';
 import { CategoriesList, ServerURL, typeNames } from '../consts';
 import images from '../assets/img';
 import { CartProduct, Product } from '../types';
-import { addItem } from '../redux/cart/slice';
 
+import { addItem } from '../redux/cart/slice';
 import { selectCartItemsById } from '../redux/cart/selectors';
 import { calcTotalCount } from '../utils/calcTotalCount';
 
-export const FullProduct = () => {
+const FullProduct = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [product, setProduct] = useState<Product>();
   const [activeType, setActiveType] = useState<number>();
@@ -120,3 +120,5 @@ export const FullProduct = () => {
       </div>
   )
 };
+
+export default FullProduct;
