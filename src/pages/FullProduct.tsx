@@ -78,14 +78,14 @@ export const FullProduct = () => {
 
                   <Link to={`/?sortProperty=rating&categoryId=${product.category}&currentPage=1`}>
                     <p className='full-product__category'>{CategoriesList[product.category]}</p></Link>
-                  <img className='pizza-block__image'
+                  <img className='product-block__image'
                        src={images[product.imageUrl]}
                        alt={product.title} />
                   <h2>{product.title}</h2>
                   <p className='full-product__description'>{`Состав: ${product.composition}`}</p>
 
 
-                  <div className='pizza-block__selector full-product__selector'>
+                  <div className='product-block__selector full-product__selector'>
                     <ul>
                       {
                         product.types.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(type)}
@@ -94,8 +94,8 @@ export const FullProduct = () => {
                       }
                     </ul>
                   </div>
-                  <div className='pizza-block__bottom'>
-                    <div className='pizza-block__price'>{product.price[activeType as number]}&nbsp;₽</div>
+                  <div className='product-block__bottom'>
+                    <div className='product-block__price'>{product.price[activeType as number]}&nbsp;₽</div>
                     <button onClick={onClickAddButtonHandler}
                             className='button button--outline button--add full-product__button-add'>
                       <svg

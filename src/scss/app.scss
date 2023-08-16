@@ -273,6 +273,7 @@ body {
 
       &-block:first-of-type {
         margin-bottom: 16px;
+        justify-content: center;
       }
     }
 
@@ -343,7 +344,7 @@ body {
       align-items: center;
       justify-content: center;
       //width: 33%;
-      margin: 0 16px;
+      margin: 0 24px;
 
       b {
         font-weight: bold;

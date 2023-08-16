@@ -38,16 +38,16 @@ export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
 
   return (
       <div className='item-block-wrapper'>
-        <div className='pizza-block'>
+        <div className='product-block'>
           <Link to={`/product/${id}`} key={id}>
             <img
-                className='pizza-block__image'
+                className='product-block__image'
                 src={images[imageUrl]}
                 alt={title}
             />
-            <h4 className='pizza-block__title'>{title}</h4>
+            <h4 className='product-block__title'>{title}</h4>
           </Link>
-          <div className='pizza-block__selector'>
+          <div className='product-block__selector'>
             <ul>
               {
                 types.map((type: number, idx: number) => <li key={idx} onClick={() => setActiveType(type)}
@@ -56,8 +56,8 @@ export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
               }
             </ul>
           </div>
-          <div className='pizza-block__bottom'>
-            <div className='pizza-block__price'>{price[activeType]}&nbsp;₽</div>
+          <div className='product-block__bottom'>
+            <div className='product-block__price'>{price[activeType]}&nbsp;₽</div>
             <button onClick={onClickAddButtonHandler} className='button button--outline button--add'>
               <svg
                   width='12'
