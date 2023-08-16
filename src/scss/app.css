@@ -474,7 +474,10 @@ body {
   margin: 0 2px;
 }
 .container .full-product__button-add svg {
-  margin-right: 0;
+  margin: 7px 0 0 0;
+}
+.container .full-product__button-add b {
+  margin: 0 0 0 7px;
 }
 .container .full-product__description {
   font-size: 18px;
