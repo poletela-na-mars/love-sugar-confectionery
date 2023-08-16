@@ -1,8 +1,9 @@
-import { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setSearchValue } from '../../redux/filter/slice';
+import { selectFilter } from '../../redux/filter/selectors';
 
 import styles from './Search.module.scss';
 
@@ -10,6 +11,12 @@ export const Search = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const { searchValue } = useSelector(selectFilter);
+
+  useEffect(() => {
+    if (searchValue) setValue(searchValue);
+  }, [searchValue]);
 
   const onClearClickHandler = () => {
     dispatch(setSearchValue(''));
