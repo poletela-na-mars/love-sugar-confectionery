@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import images from '../../assets/img';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,21 +19,25 @@ export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
   const [itemCount, setItemCount] = useState(0);
   const [activeType, setActiveType] = useState(types[0]);
 
+  useEffect(() => {
+    setItemCount(count);
+  }, []);
+
   const onClickAddButtonHandler = () => {
-    if (itemCount < 99) {
+    if (itemCount < 99 && count < 99) {
       setItemCount(itemCount + 1);
+
+      const item: CartProduct = {
+        id,
+        title,
+        price: price[activeType],
+        imageUrl,
+        types: activeType,
+        count: 0,
+      };
+
+      dispatch(addItem(item));
     }
-
-    const item: CartProduct = {
-      id,
-      title,
-      price: price[activeType],
-      imageUrl,
-      types: activeType,
-      count: 0,
-    };
-
-    dispatch(addItem(item));
   };
 
   return (

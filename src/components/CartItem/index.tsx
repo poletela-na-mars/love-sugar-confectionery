@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { addItem, minusItem, removeItem } from '../../redux/cart/slice';
 
 import images from '../../assets/img';
@@ -24,7 +25,9 @@ export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProdu
   };
 
   const onPlusClickHandler = () => {
-    dispatch(addItem(item));
+    if (count < 99) {
+      dispatch(addItem(item));
+    }
   };
 
   const onMinusClickHandler = () => {
@@ -60,18 +63,18 @@ export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProdu
         <div className='cart__item'>
           <div className='cart__item-block'>
 
-          <Link to={`/product/${id}`} key={id}>
-            <div className='cart__item-img'>
-              <img
-                  className='product-block__image'
-                  src={images[imageUrl]}
-                  alt='Product' />
+            <Link to={`/product/${id}`} key={id}>
+              <div className='cart__item-img'>
+                <img
+                    className='product-block__image'
+                    src={images[imageUrl]}
+                    alt='Product' />
+              </div>
+            </Link>
+            <div className='cart__item-info'>
+              <h3>{title}</h3>
+              <p>{typeNames[types]}</p>
             </div>
-          </Link>
-          <div className='cart__item-info'>
-            <h3>{title}</h3>
-            <p>{typeNames[types]}</p>
-          </div>
 
           </div>
 

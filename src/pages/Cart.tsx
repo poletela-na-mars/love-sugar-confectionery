@@ -75,10 +75,12 @@ const Cart = () => {
                 <span>Очистить корзину</span>
               </button>
             </div>
-            <div className='content__items'>
-              {
-                items.map((item) => <CartItem key={item.id + item.types} {...item} />)
-              }
+            <div className='scroll-container'>
+              <div className='content__items'>
+                {
+                  items.map((item) => <CartItem key={item.id + item.types} {...item} />)
+                }
+              </div>
             </div>
             <div className='cart__bottom'>
               <div className='cart__bottom-details'>

@@ -26,7 +26,7 @@ const FullProduct = () => {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const { data } = await axios.get(`${ServerURL}/${id}`);
+        const { data } = await axios.get<Product>(`${ServerURL}/${id}`);
         setProduct(data);
         setActiveType(data.types[0]);
       } catch (err) {
@@ -40,8 +40,12 @@ const FullProduct = () => {
   const cartItems = useSelector(selectCartItemsById(product?.id as number));
   const count = calcTotalCount(cartItems);
 
+  useEffect(() => {
+    setItemCount(count);
+  }, []);
+
   const onClickAddButtonHandler = () => {
-    if (product && itemCount < 99) {
+    if (product && itemCount < 99 && count < 99) {
       setItemCount(itemCount + 1);
 
       const item: CartProduct = {
