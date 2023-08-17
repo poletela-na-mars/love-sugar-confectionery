@@ -16,21 +16,9 @@ export const App = () => {
         <Routes>
           <Route path='/' element={<MainLayout />}>
             <Route path='' element={<Home />} />
-            <Route path='cart'
-                   element={<Suspense
-                       fallback={<div className='container'><h2 className='loading'>Загрузка...</h2></div>}>
-                     <Cart />
-                   </Suspense>} />
-            <Route path='product/:id'
-                   element={<Suspense
-                       fallback={<div className='container'><h2 className='loading'>Загрузка...</h2></div>}>
-                     <FullProduct />
-                   </Suspense>} />
-            <Route path='*'
-                   element={<Suspense
-                       fallback={<div className='container'><h2 className='loading'>Загрузка...</h2></div>}>
-                     <NotFound />
-                   </Suspense>} />
+            <Route path='cart' element={<Suspense><Cart /></Suspense>} />
+            <Route path='product/:id' element={<Suspense><FullProduct /></Suspense>} />
+            <Route path='*' element={<Suspense><NotFound /></Suspense>} />
           </Route>
         </Routes>
       </>

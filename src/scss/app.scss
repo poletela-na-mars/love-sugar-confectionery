@@ -19,6 +19,7 @@ body {
   @media (max-width: 645px) {
     width: calc(100vw - 60px);
     margin-top: 15px;
+    margin-bottom: 15px;
   }
 }
 
@@ -121,6 +122,10 @@ body {
       margin-top: 40px;
     }
 
+    &__bottom {
+      flex-basis: 50%;
+    }
+
     &__selector {
       ul {
         margin: 0;
@@ -133,13 +138,17 @@ body {
 
     &__button-add {
       margin-top: 0;
+      padding: 3px 0 0;
+      height: 36px;
 
       span {
         margin: 0 2px;
       }
 
       svg {
-        margin: 7px 0 0 0;
+        width: 10px;
+        height: 10px;
+        margin: 0px 0 0 0;
       }
 
       b {
