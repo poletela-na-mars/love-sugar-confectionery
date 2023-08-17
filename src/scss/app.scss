@@ -12,12 +12,12 @@ body {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
-  margin: 50px auto;
+  margin: 40px auto;
   border-radius: 10px;
   max-width: 1400px;
 
   @media (max-width: 645px) {
-    width: calc(100vw - 60px);
+    width: calc(100vw - 30px);
     margin-top: 15px;
     margin-bottom: 15px;
   }
@@ -172,7 +172,7 @@ body {
 
   &--cart {
     max-width: 820px;
-    margin: 90px auto;
+    margin: 20px auto;
 
     .content__title {
       margin: 0;
@@ -202,6 +202,40 @@ body {
 }
 
 .cart {
+  @media (max-width: 450px) {
+    &__bottom-details {
+      span {
+        font-size: 16px !important;
+      }
+
+      b {
+        font-size: 16px;
+      }
+    }
+
+    &__bottom {
+      padding: 20px 8px !important;
+    }
+
+    &__bottom-buttons {
+      .button--add {
+        padding: 8px !important;
+
+        svg {
+          display: none;
+        }
+      }
+
+      .pay-btn {
+        padding: 8px !important;
+      }
+
+      span {
+        font-size: 12px !important;
+      }
+    }
+  }
+
   &__top {
     display: flex;
     justify-content: space-between;
@@ -218,7 +252,8 @@ body {
     display: flex;
     align-items: center;
     font-size: 32px;
-    margin-right: 8px;
+    margin-right: 16px;
+    padding-bottom: 8px;
 
     @media (max-width: 400px) {
       margin-right: 0;
@@ -248,7 +283,7 @@ body {
     color: inherit;
     border: none;
     margin-left: 8px;
-    padding: 0;
+    padding-bottom: 8px;
     font: inherit;
     outline: inherit;
 
@@ -300,7 +335,7 @@ body {
     padding-top: 30px;
     margin-top: 30px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       flex-direction: column;
 
       &-block {
@@ -316,6 +351,16 @@ body {
 
       &-remove {
         margin-right: 0 !important;
+      }
+    }
+
+    @media (max-width: 450px) {
+      &-price {
+        width: 100% !important;
+      }
+
+      &-count {
+        width: 100% !important;
       }
     }
 
@@ -339,7 +384,8 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 40%;
+      //width: 40%;
+      flex-basis: 45%;
       margin-right: 16px;
 
       h3 {
@@ -359,7 +405,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      //width: 13%;
+      width: 126px;
 
       &-minus {
         margin-right: 10px;
@@ -385,7 +431,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      //width: 33%;
+      width: 70px;
       margin: 0 24px;
 
       b {
@@ -400,7 +446,7 @@ body {
       align-items: center;
       justify-content: flex-end;
       margin-right: 16px;
-      //width: 4%;
+      flex-basis: 3%;
 
       background: none;
       color: inherit;
@@ -439,7 +485,13 @@ body {
   }
 
   &__bottom {
-    margin: 50px 0;
+    margin: 50px 0 0 0;
+    padding: 20px;
+    background-color: $white;
+    border-radius: $light-border-radius;
+    box-shadow: $popup-box-shadow;
+    position: sticky;
+    bottom: 0;
 
     &-details {
       display: flex;
@@ -510,7 +562,7 @@ body {
   }
 
   &--empty {
-    margin: 80px auto;
+    margin: 20px auto;
     text-align: center;
 
     h2 {
