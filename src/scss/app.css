@@ -376,7 +376,7 @@ body {
 }
 
 .content {
-  padding: 40px 0;
+  padding: 20px 0;
 }
 .content__error-info {
   margin: 100px auto;
@@ -548,7 +548,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 @media (max-width: 400px) {
   .cart__top {
@@ -634,7 +634,7 @@ body {
   width: 100%;
   border-top: 1px solid #f6f6f6;
   padding-top: 30px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 @media (max-width: 700px) {
   .cart__item {
