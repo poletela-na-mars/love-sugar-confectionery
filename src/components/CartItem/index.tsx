@@ -11,7 +11,11 @@ import { typeNames } from '../../consts';
 
 import { Popup } from '../Popup';
 
-export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProduct) => {
+type CartItemProps = CartProduct & {
+  enableAnimations: ((enabled: boolean) => void)
+};
+
+export const CartItem = ({ id, title, price, imageUrl, types, count, enableAnimations }: CartItemProps) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -32,6 +36,7 @@ export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProdu
 
   const onMinusClickHandler = () => {
     if (count === 1) {
+      enableAnimations(false);
       setIsPopupOpen(true);
       return;
     }
@@ -42,10 +47,12 @@ export const CartItem = ({ id, title, price, imageUrl, types, count }: CartProdu
   };
 
   const onRemoveClickHandler = () => {
+    enableAnimations(false);
     setIsPopupOpen(!isPopupOpen);
   };
 
   const onRemoveConfirmButtonClickHandler = () => {
+    enableAnimations(true);
     dispatch(
         removeItem(item)
     );

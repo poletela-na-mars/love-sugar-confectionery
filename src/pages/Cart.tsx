@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import { clearItems } from '../redux/cart/slice';
 import { selectCart } from '../redux/cart/selectors';
@@ -13,6 +14,8 @@ import { calcTotalCount } from '../utils/calcTotalCount';
 
 const Cart = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [parent, enableAnimations] = useAutoAnimate();
 
   const dispatch = useDispatch();
   const { totalPrice, items } = useSelector(selectCart);
@@ -76,9 +79,9 @@ const Cart = () => {
               </button>
             </div>
             {/*<div className='scroll-container'>*/}
-              <div className='content__items'>
+              <div ref={parent} className='content__items'>
                 {
-                  items.map((item) => <CartItem key={item.id + item.types} {...item} />)
+                  items.map((item) => <CartItem key={item.id + item.types} enableAnimations={enableAnimations} {...item} />)
                 }
               </div>
             {/*</div>*/}
