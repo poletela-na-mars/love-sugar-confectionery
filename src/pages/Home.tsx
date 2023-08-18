@@ -37,8 +37,6 @@ export const Home = () => {
           currentPage,
         })
     );
-
-    window.scrollTo(0, 0);
   };
 
   const onClickCategoryHandler = useCallback((id: number) => {

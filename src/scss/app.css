@@ -392,8 +392,14 @@ body {
   font-size: 20px;
 }
 .content__title {
+  font-size: 24px;
   font-weight: bold;
   margin: 35px 0;
+}
+@media (max-width: 730px) {
+  .content__title {
+    text-align: center;
+  }
 }
 .content__items {
   display: grid;
@@ -758,6 +764,7 @@ body {
   background-color: #FFF;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.09);
+  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
 }
@@ -852,7 +859,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: 20px;
   padding: 40px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.09);
   background-color: #FFF;
