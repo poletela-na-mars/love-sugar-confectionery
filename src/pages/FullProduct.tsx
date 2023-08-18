@@ -100,7 +100,7 @@ const FullProduct = () => {
                   </div>
 
                   <div className='product-block__bottom full-product__bottom'>
-                    <div className='product-block__price'>{product.price[activeType as number]}&nbsp;₽</div>
+                    <div className='product-block__price full-product__price'>{product.price[activeType as number]}&nbsp;₽</div>
                     <button onClick={onClickAddButtonHandler}
                             className='button button--outline button--add full-product__button-add'>
                       <svg

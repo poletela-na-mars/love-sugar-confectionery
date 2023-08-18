@@ -59,13 +59,16 @@ body {
 
     @media (max-width: 1400px) {
       grid-template-columns: repeat(3, 3fr);
+      grid-template-rows: repeat(3, 1fr);
     }
 
     @media (max-width: 1060px) {
+      grid-template-rows: repeat(4, 1fr);
       grid-template-columns: repeat(2, 2fr);
     }
 
     @media (max-width: 730px) {
+      grid-template-rows: repeat(8, 1fr);
       grid-template-columns: repeat(1, 1fr);
     }
     //display: flex;
@@ -127,9 +130,9 @@ body {
       margin-top: 40px;
     }
 
-    &__bottom {
-      flex-basis: 50%;
-    }
+    //&__bottom {
+    //  flex-basis: 50%;
+    //}
 
     &__selector {
       ul {
@@ -141,7 +144,12 @@ body {
       }
     }
 
+    &__price {
+      flex-basis: 60%;
+    }
+
     &__button-add {
+      flex-basis: 40%;
       margin-top: 0;
       padding: 3px 0 0;
       height: 36px;
@@ -153,7 +161,7 @@ body {
       svg {
         width: 10px;
         height: 10px;
-        margin: 0px 0 0 0;
+        margin: 0 0 0 0;
       }
 
       b {
