@@ -1,8 +1,8 @@
 import cartSlice, { addItem, clearItems, minusItem, removeItem } from './slice';
-import { InitialCartState } from './types';
+import { CartState } from './types';
 import { CartProduct } from '../../types';
 
-let initialState: InitialCartState;
+let initialState: CartState;
 
 let mockProduct: CartProduct = {
   id: 2,
