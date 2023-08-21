@@ -1,6 +1,6 @@
 import { CartProduct } from '../../types';
 
-export type InitialCartState = {
+export type CartState = {
   totalPrice: number;
   items: CartProduct[];
 }
