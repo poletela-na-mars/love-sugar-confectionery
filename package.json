@@ -2,6 +2,11 @@
   "name": "love-sugar-confectionery",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
+  },
   "dependencies": {
     "@formkit/auto-animate": "^0.7.0",
     "@reduxjs/toolkit": "^1.9.5",

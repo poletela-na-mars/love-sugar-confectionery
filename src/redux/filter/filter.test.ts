@@ -1,6 +1,8 @@
 import filterSlice, { setCategoryId, setCurrentPage, setFilters, setSearchValue, setSort } from './slice';
+
 import { FilterState } from './types';
 import { SortType } from '../../types';
+
 import { SortProperty } from '../../consts';
 
 let initialState: FilterState = {
