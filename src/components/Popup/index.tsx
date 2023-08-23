@@ -17,11 +17,13 @@ export const Popup = ({
                             cancelText?: string,
                           }) => {
   return (
-      <div className='popup'>
+      <div data-testid='popup' className='popup'>
         {text}
         <div className='popup__buttons-container'>
           <button onClick={confirmActionClickHandler}>{confirmText}</button>
-          {cancelText && <button onClick={() => setIsPopupOpen(!isPopupOpen)}>{cancelText}</button>}
+          {cancelText &&
+              <button data-testid='close-button' onClick={() => setIsPopupOpen(!isPopupOpen)}>{cancelText}</button>
+          }
         </div>
       </div>
   );

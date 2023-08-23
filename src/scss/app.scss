@@ -605,11 +605,15 @@ body {
       padding: 10px;
     }
 
-    img {
+    img, &__img {
       display: block;
       width: 100%;
       max-width: 300px;
       margin: 45px auto 60px;
+    }
+
+    &__img {
+      border-radius: $light-border-radius;
     }
 
     .button--black {

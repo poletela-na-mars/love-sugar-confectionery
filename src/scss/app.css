@@ -855,11 +855,14 @@ body {
   word-break: break-word;
   padding: 10px;
 }
-.cart--empty img {
+.cart--empty img, .cart--empty__img {
   display: block;
   width: 100%;
   max-width: 300px;
   margin: 45px auto 60px;
+}
+.cart--empty__img {
+  border-radius: 10px;
 }
 .cart--empty .button--black {
   padding: 12px 0 14px;
