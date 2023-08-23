@@ -482,6 +482,14 @@ body {
 }
 .container .full-product__price {
   flex-basis: 60%;
+  margin-right: 8px;
+}
+.container .full-product__count {
+  margin-top: 0;
+  margin-left: 8px;
+}
+.container .full-product__count * {
+  margin: 0;
 }
 .container .full-product__button-add {
   flex-basis: 40%;

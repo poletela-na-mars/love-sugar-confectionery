@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { addItem } from '../../redux/cart/slice';
-import { selectCartItemsById } from '../../redux/cart/selectors';
+import { selectCartItemsByType } from '../../redux/cart/selectors';
 import { calcTotalCount } from '../../utils/calcTotalCount';
 
 import { typeNames } from '../../consts';
@@ -12,16 +12,16 @@ import { CartProduct, Product } from '../../types';
 
 export const ItemBlock = ({ id, title, price, imageUrl, types }: Product) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItemsById(id));
-
-  const count = calcTotalCount(cartItems);
 
   const [itemCount, setItemCount] = useState(0);
   const [activeType, setActiveType] = useState(types[0]);
 
+  const cartItems = useSelector(selectCartItemsByType(id, activeType));
+  const count = calcTotalCount(cartItems);
+
   useEffect(() => {
     setItemCount(count);
-  }, []);
+  }, [activeType]);
 
   const onClickAddButtonHandler = () => {
     if (itemCount < 99 && count < 99) {
